@@ -250,6 +250,18 @@ h2 {
     margin: -16px 0 0 -16px;
   }
 }
+@media (max-height: 500px) {
+  #landing .title {
+    margin-top: -80px;
+  }
+  #landing .title .desc {
+    margin-top: 30px;
+  }
+  #landing .fa.fa-chevron-down {
+    font-size: 32px;
+    margin: -16px 0 0 -16px;
+  }
+}
 #feature {
   width: 100%;
   min-height: 450px;
