@@ -63,12 +63,13 @@ html(lang="en")
             .col-xs-4
               .feature
               .title 精心挑選的#[b 舒適材質]
-  //-
+          br
+
     #form.section: .inner
       .text-center
         h2 現在就下訂吧！
       br
-      .row.text-center
+      .choices.row.text-center
         .col-sm-1
         .col-sm-3
           .goods
@@ -92,23 +93,22 @@ html(lang="en")
               each i in [1,2,3,4,5,6]
                 option= i
         .col-sm-1
-      br
-      hr
-      h3 寄送資訊
-      small.grayed 我們使用 SSL 安全連線並採貨到付款，保障您的消費安全
-      br
-      br
+      .sep.wide-gap
       .form
-        .row
-          .col-sm-3
-            label 姓名
-            input.form-control(type="text",name="name",placeholder="例如: 王小明")
-          .col-sm-3
-            label 電話
-            input.form-control(type="text",name="phone",placeholder="例如: 0910111111")
-          .col-sm-6
-            label 寄送地址
-            input.form-control(type="text",name="name",placeholder="例如: 王小明")
+        .inner
+          h3 寄送資訊
+          .tiny.grayed #[i.fa.fa-lock] 我們使用 SSL 安全連線並採貨到付款，保障您的消費安全
+          .sep
+          .row
+            .col-sm-3
+              label 姓名
+              input.form-control(type="text",name="name",placeholder="例如: 王小明")
+            .col-sm-3
+              label 電話
+              input.form-control(type="text",name="phone",placeholder="例如: 0910111111")
+            .col-sm-6
+              label 寄送地址
+              input.form-control(type="text",name="name",placeholder="例如: 王小明")
         .sep.gap
         label 購買明細
         .item
@@ -123,19 +123,24 @@ html(lang="en")
           .name 總計
         br
         .btn.btn-success.btn-lg.btn-block 購買
-        small.grayed.pull-right(style="margin-top: 5px") * 下單後隔日發貨，約 2 ~ 4 天送達，溫暖您的腳不需久候
+        .tiny.grayed.pull-right(style="margin-top: 5px") * 下單後隔日發貨，約 2 ~ 4 天送達，溫暖您的腳不需久候
       br
       hr
       br
+
     #about.section: .inner
       .spc
       br
       h2 關於襪之心
       .sep.gap
-      p 杏鮑鮑一來就被服務員丟下鍋ˊˇˋ；次總是會有人不能吃辣。再引進甘甜的山泉水過濾淨化，至於小菜，吃起來比較油口；除非煮了很久很久吧，在強烈的黃光照射下這張拍得沒有很漂亮。我還沒把裙子拿去洗，因為那醬汁太好吃了，之後我都會跟進，所以訂了這家好像也美賣的搖滾熱炒；經一段時間滾煮，整個超讚的。配點薑絲吃更能提升香味，麻辣的味道會比較適合，吃起來QQ嫩嫩有彈性，其..
-      br
-      p 若有商品相關或送貨、退貨問題，請來信至我們的客服信箱：#[a(href="mailto:contact@stockings.today") contact@stockings.today]
+      blockquote
+        p 杏鮑鮑一來就被服務員丟下鍋ˊˇˋ；次總是會有人不能吃辣。再引進甘甜的山泉水過濾淨化，至於小菜，吃起來比較油口；除非煮了很久很久吧，在強烈的黃光照射下這張拍得沒有很漂亮。我還沒把裙子拿去洗，因為那醬汁太好吃了，之後我都會跟進，所以訂了這家好像也美賣的搖滾熱炒；經一段時間滾煮，整個超讚的。配點薑絲吃更能提升香味，麻辣的味道會比較適合，吃起來QQ嫩嫩有彈性，其..
+        br
+        p 若有商品相關或送貨、退貨問題，請來信至我們的客服信箱：#[a(href="mailto:contact@stockings.today") contact@stockings.today]
+        br
+      .spc
     #footer.section: .inner
+      .spc
       br
       div: b 襪之心
       div stockings.today &copy; 2016 
