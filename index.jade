@@ -1,7 +1,7 @@
 doctype html
 //- basic libraries: jquery(1.10.2), d3js(3.5.4), angularjs(1.3.15), bootstrap(3.0)/semantic-ui(0.9.3/0.9.5)
 //-                  fontawesome(4.4.0), reactjs(0.14.0)
-- var use = { cdn: true, og: false, favicon: true }
+- var use = { cdn: false, og: false, favicon: true }
 - var lib = { jquery: true, d3js: false, angular: true, bootstrap: true, semantic: false, fontawesome: true, reactjs: false, revealjs: false }
 - var assets = "assets"
 - var favicon = "thumbnail.png"
@@ -25,8 +25,8 @@ html(lang="en")
     // libraries
     include library.jade
     // custom files
-    link(rel="stylesheet",type="text/css",href="index.css")
-    link(rel="stylesheet",type="text/css",href="http://fonts.googleapis.com/earlyaccess/notosanstc.css")
+    link(rel="stylesheet",type="text/css",href="static/css/index.css")
+    //-link(rel="stylesheet",type="text/css",href="//fonts.googleapis.com/earlyaccess/notosanstc.css")
     script(type="text/javascript",src="index.js")
   body
     #navbar.navbar.navbar-default.navbar-fixed-top.navbar-inverse
@@ -45,7 +45,7 @@ html(lang="en")
         .subtitle 何不來買雙氣墊保暖襪？
     #feature.section: .inner
       .spc
-      h3.text-center 氣墊保暖襪是什麼？
+      h2 氣墊保暖襪是什麼？
       br
       .row
         .col-sm-4
@@ -54,15 +54,16 @@ html(lang="en")
           p 綜合蔬菜盤，鼎王給我的第一印象是；｜碎碎念｜。可能為了方便和避免燒烤味吧；在台北有兩家分店，位於公益路上三角窗的店面；小心踩到地雷延期到現在，上面有簡易菜單，鍋底當然是點鴛鴦鍋；講八卦應該也可以很放心～；服務生將我們帶到2F座位區。把鹽舀取些許擺上碗中研磨成粉再倒入鹽碟中，鍋底為110元/人
           hr
           .row.features.text-center
-            .col-sm-4
+            .col-xs-4
               .feature
-              .title 混織羊毛的暖和體感
-            .col-sm-4
+              .title 混織羊毛的#[b 暖和體感]
+            .col-xs-4
               .feature
-              .title 保護腳踝的彈性氣墊
-            .col-sm-4
+              .title 保護腳踝的#[b 彈性氣墊]
+            .col-xs-4
               .feature
-              .title 精心挑選的舒適材質
+              .title 精心挑選的#[b 舒適材質]
+  //-
     #form.section: .inner
       .text-center
         h2 現在就下訂吧！

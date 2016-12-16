@@ -300,6 +300,8 @@ update-file = ->
     for src in srcs
       try
         des = src.replace(/src\/styl/, "static/css").replace(/\.styl$/, ".css")
+        src = "src/styl/index.styl"
+        des = "static/css/index.css"
         stylus fs.read-file-sync(src)toString!
           .set \filename, src
           .define 'index', (a,b) ->

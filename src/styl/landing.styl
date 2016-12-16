@@ -1,0 +1,33 @@
+@import 'vars'
+@import 'basic'
+
+#landing
+  width: 100%
+  height: 100%
+  background: url(/img/sample/landing.jpg) center center
+  background-size: cover
+  position: relative
+  .title
+    position: absolute
+    width: 100%
+    top: 50%
+    left: 0
+    margin: -50px 0 0
+    color: #fff
+    text-align: center
+    font-size: 3em
+    .subtitle
+      font-size: 0.5em
+
+@media(max-width: 800px)
+  #landing
+    .title
+      font-size: 2em
+    .subtitle
+      font-size: 0.7em
+@media(max-width: 480px)
+  #landing
+    .title
+      font-size: 1.5em
+    .subtitle
+      font-size: 0.7em

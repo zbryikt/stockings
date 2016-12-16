@@ -1,0 +1,56 @@
+@import 'vars'
+@import 'basic'
+
+#feature
+  .row
+    margin: 0
+  h2
+    margin: 20px
+    border-bottom: 4px solid #f42
+    display: inline-block
+    padding-bottom: 5px
+
+  width: 100%
+  min-height: 500px
+  background: #f9f9f9
+  .photo
+    width: 260px
+    height: 320px
+    background: #ddd
+    border-radius: 20px
+    margin: auto
+    box-shadow: 0 4px 0 0px #999
+  .features
+    font-size: 0.8em
+    .feature
+      width: 120px
+      height: 120px
+      background: #ddd
+      margin: auto
+      border-radius: 10px
+      margin-bottom: 10px
+      box-shadow: 0 4px 0 0px #999
+
+@media (max-width: 768px)
+  #feature
+    .photo
+      width: 90%
+      margin: auto
+      height: 240px
+      margin-bottom: 20px
+    h2
+      text-align: center
+      display: block
+@media (max-width: 480px)
+  #feature
+    .photo
+      width: 100%
+      border-radius: 0
+    .row .col-sm-4
+      padding: 0
+    .row .col-xs-4
+      padding: 0
+      .feature
+        width: 110px
+      b
+        display: block
