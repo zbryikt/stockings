@@ -322,7 +322,7 @@ h2 {
 }
 @media (max-width: 440px) {
   #feature .row .col-xs-4 .feature {
-    width: 100px;
+    width: 90px;
   }
 }
 #form .row {
