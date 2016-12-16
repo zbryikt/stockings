@@ -321,7 +321,7 @@ h2 {
   }
 }
 @media (max-width: 400px) {
-  #feature .features .feature {
+  #feature .row .col-xs-4 .feature {
     width: 100px;
   }
 }
