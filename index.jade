@@ -26,23 +26,27 @@ html(lang="en")
     include library.jade
     // custom files
     link(rel="stylesheet",type="text/css",href="static/css/index.css")
-    link(rel="stylesheet",type="text/css",href="//fonts.googleapis.com/earlyaccess/notosanstc.css")
-    script(type="text/javascript",src="index.js")
+    //-link(rel="stylesheet",type="text/css",href="//fonts.googleapis.com/earlyaccess/notosanstc.css")
+    script(type="text/javascript",src="//cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.0/js/smooth-scroll.js")
   body
     #navbar.navbar.navbar-default.navbar-fixed-top.navbar-inverse
       .container-fluid
         .navbar-header
-          a.navbar-brand(href="#") 襪之心
+          a.navbar-brand(href="#")
+            img(src="img/logo.svg",style="height:24px")
+            span 襪之心
         .navbar-collapse.collapse
           .nav.navbar-nav.navbar-right
-            li.active: a(href="#") 產品介紹
-            li.active: a(href="#") 線上訂購
+            li: a(data-scroll,href="#a-feature") 產品介紹
+            li: a(data-scroll,href="#a-form") 線上訂購
+            li: a(data-scroll,href="#a-about") 關於我們
     #landing
-      br
-      br
       .title
         span 天冷了，保暖你的腳吧
         .subtitle 何不來買雙氣墊保暖襪？
+        .desc 總整感鄉重古過會不足！等共已文行土整日廣務只投你思照；論說門嗎的深……來待成位教發一府定，有定手兩此南回展力高一水。花地內的是約；他社信有作般成服間意望教時月自收拉。
+      a.fa.fa-chevron-down(href="#a-feature",data-scroll)
+    #a-feature.a-offset
     #feature.section: .inner
       .spc
       h2 氣墊保暖襪是什麼？
@@ -52,7 +56,7 @@ html(lang="en")
           .photo
         .col-sm-8
           p 綜合蔬菜盤，鼎王給我的第一印象是；｜碎碎念｜。可能為了方便和避免燒烤味吧；在台北有兩家分店，位於公益路上三角窗的店面；小心踩到地雷延期到現在，上面有簡易菜單，鍋底當然是點鴛鴦鍋；講八卦應該也可以很放心～；服務生將我們帶到2F座位區。把鹽舀取些許擺上碗中研磨成粉再倒入鹽碟中，鍋底為110元/人
-          hr
+          .sep
           .row.features.text-center
             .col-xs-4
               .feature
@@ -65,6 +69,7 @@ html(lang="en")
               .title 精心挑選的#[b 舒適材質]
           br
 
+    #a-form.a-offset
     #form.section: .inner
       .text-center
         h2 現在就下訂吧！
@@ -77,28 +82,28 @@ html(lang="en")
             .photo
             .title 樸質灰
             select.form-control
-              each i in [1,2,3,4,5,6]
+              each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-4
           .goods
             .photo
             .title 沉靜黑
             select.form-control
-              each i in [1,2,3,4,5,6]
+              each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-3
           .goods
             .photo
             .title 純真白
             select.form-control
-              each i in [1,2,3,4,5,6]
+              each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-1
       .sep.wide-gap
       .form
         .inner
           h3 寄送資訊
-          .tiny.grayed #[i.fa.fa-lock] 我們使用 SSL 安全連線並採貨到付款，保障您的消費安全
+          .tiny.grayed #[i.fa.fa-lock] 透用 SSL 安全連線並採貨到付款，保障您的消費安全
           .sep
           .row
             .col-sm-3
@@ -128,7 +133,7 @@ html(lang="en")
       br
       hr
       br
-
+    #a-about.a-offset
     #about.section: .inner
       .spc
       br
@@ -143,6 +148,9 @@ html(lang="en")
     #footer.section: .inner
       .spc
       br
+      .pull-right
+        a(href="mailto:contact@stockings.today") 客服信箱
       div: b 襪之心
       div stockings.today &copy; 2016 
 
+  script(type="text/javascript",src="index.js")

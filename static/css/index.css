@@ -24,8 +24,13 @@ h2 {
   display: inline-block;
   padding-bottom: 5px;
 }
+.a-offset {
+  visibility: hidden;
+  position: absolute;
+  margin-top: -55px;
+}
 .tiny {
-  font-size: 0.65em;
+  font-size: 0.6em;
 }
 .grayed {
   color: #999;
@@ -107,6 +112,77 @@ h2 {
 .item .price {
   float: right;
 }
+.navbar-brand img {
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+ {
+  width: 100%;
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-ms-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-o-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
 #landing {
   width: 100%;
   height: 100%;
@@ -117,7 +193,7 @@ h2 {
 #landing .title {
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 44%;
   left: 0;
   margin: -50px 0 0;
   color: #fff;
@@ -127,33 +203,64 @@ h2 {
 #landing .title .subtitle {
   font-size: 0.5em;
 }
+#landing .title .desc {
+  font-size: 0.25em;
+  font-weight: 100;
+  width: 320px;
+  margin: 50px auto;
+  opacity: 0.85;
+}
+#landing .fa.fa-chevron-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  font-size: 64px;
+  color: #fff;
+  margin: -32px 0 0 -32px;
+  -ms-animation: blink 0.8s infinite linear;
+  -moz-animation: blink 0.8s infinite linear;
+  -webkit-animation: blink 0.8s infinite linear;
+  -o-animation: blink 0.8s infinite linear;
+  animation: blink 0.8s infinite linear;
+  text-decoration: none;
+}
 @media (max-width: 800px) {
   #landing .title {
     font-size: 2em;
   }
-  #landing .subtitle {
-    font-size: 0.7em;
+  #landing .title .subtitle {
+    font-size: 0.6em;
+  }
+  #landing .title .desc {
+    font-size: 0.5em;
   }
 }
 @media (max-width: 480px) {
   #landing .title {
     font-size: 1.5em;
   }
-  #landing .subtitle {
-    font-size: 0.7em;
+  #landing .title .subtitle {
+    font-size: 0.6em;
+  }
+  #landing .title .desc {
+    font-size: 0.45em;
+  }
+  #landing .fa.fa-chevron-down {
+    font-size: 32px;
+    margin: -16px 0 0 -16px;
   }
 }
 #feature {
   width: 100%;
-  min-height: 500px;
-  background: #f9f9f9;
+  min-height: 450px;
+  background: #f5f5f5;
 }
 #feature .row {
   margin: 0;
 }
 #feature .photo {
   width: 260px;
-  height: 320px;
+  height: 300px;
   background: #ddd;
   border-radius: 20px;
   margin: auto;
@@ -164,7 +271,7 @@ h2 {
 }
 #feature .features .feature {
   width: 120px;
-  height: 120px;
+  height: 115px;
   background: #ddd;
   margin: auto;
   border-radius: 10px;
@@ -208,14 +315,14 @@ h2 {
   margin: 10px;
 }
 #form .form .inner {
-  background: #eee;
+  background: #f5f5f5;
   border: 1px solid #eee;
   border-radius: 3px;
   padding: 3px 8px 10px;
   box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 }
 #form .form .inner h3 {
-  margin: 5px 0 0;
+  margin: 5px 0 3px;
 }
 #form .form label {
   font-size: 16px;
@@ -241,4 +348,7 @@ h2 {
 }
 #footer .inner {
   padding: 10px;
+}
+#footer .inner a {
+  color: #fff;
 }
