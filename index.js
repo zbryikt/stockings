@@ -1,1 +1,1 @@
-smoothScroll.init();
+var WebFontConfig;WebFontConfig={timeout:5e3,custom:{families:["Noto Sans TC"],urls:["https://fonts.googleapis.com/earlyaccess/notosanstc.css"]},active:function(){return setTimeout(function(){return $("html").addClass("wf-active-later")},1500)}},WebFont.load(WebFontConfig),smoothScroll.init();

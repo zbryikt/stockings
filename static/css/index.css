@@ -5,17 +5,22 @@ body {
   margin: 0;
   padding: 0;
   font-size: 20px;
+}
+html.wf-active .font {
   font-family: 'Noto Sans TC', sans-serif;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-.section,
-.title {
+html.wf-active-later {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+html.wf-active-later h1,
+html.wf-active-later h2,
+html.wf-active-later h3,
+html.wf-active-later h4,
+html.wf-active-later h5,
+html.wf-active-later h6,
+html.wf-active-later p,
+html.wf-active-later .section,
+html.wf-active-later .title {
   font-family: 'Noto Sans TC', sans-serif;
 }
 h2 {
