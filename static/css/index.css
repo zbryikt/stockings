@@ -229,6 +229,10 @@ h2 {
   text-decoration: none;
 }
 @media (max-width: 800px) {
+  #landing {
+    background-size: 800px;
+    background-position: 0% 86%;
+  }
   #landing .title {
     font-size: 2em;
   }
@@ -317,6 +321,9 @@ h2 {
     width: 100%;
     border-radius: 0;
   }
+  #feature .row .col-sm-8 {
+    padding: 0;
+  }
   #feature .row .col-sm-4 {
     padding: 0;
   }
@@ -324,22 +331,21 @@ h2 {
     padding: 0;
   }
   #feature .row .col-xs-4 .feature {
-    width: 110px;
+    width: 100%;
+    border-radius: 0;
   }
   #feature .row .col-xs-4 b {
     display: block;
-  }
-}
-@media (max-width: 440px) {
-  #feature .row .col-xs-4 .feature {
-    width: 90px;
   }
 }
 #form .row {
   margin: 0;
 }
 #form .row .photo {
-  background-size: cover;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #fff;
 }
 #form .form {
   margin: 10px;
