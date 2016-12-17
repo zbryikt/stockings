@@ -61,5 +61,6 @@ angular.module \stockings, <[]>
       <- $scope.$apply
       $scope.info.loading = false
       $scope.info.done = true
+      fbq('track', 'Purchase', {value: "#{$scope.info.subtotal}", currency:'TWD'});
       smoothScroll.animateScroll( document.querySelector \#a-reset )
     $scope.reset!
