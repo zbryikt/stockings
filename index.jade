@@ -27,11 +27,10 @@ html(lang="en")
     // custom files
     link(rel="stylesheet",type="text/css",href="static/css/index.css")
     link(rel="preconnect",href="//fonts.googleapis.com/",crossorigin)
-    script(src="//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js",async)
-
-
+    script(src="//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js")
+    script(src="//cdn.firebase.com/js/client/2.4.2/firebase.js")
     script(type="text/javascript",src="//cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.0/js/smooth-scroll.js")
-  body
+  body(ng-app="stockings")
     #navbar.navbar.navbar-default.navbar-fixed-top.navbar-inverse
       .container-fluid
         .navbar-header
@@ -73,10 +72,10 @@ html(lang="en")
           br
 
     #a-form.a-offset
-    #form.section: .inner
+    #form.section(ng-controller="form"): .inner
       .text-center
         h2 現在就下訂吧！
-        .tiny.grayed 三種款式供您挑選...
+        .tiny.grayed 灰、黑、藍，三種款式供您挑選...
         br
       .choices.row.text-center
         .col-sm-1
@@ -84,66 +83,109 @@ html(lang="en")
           .goods
             .photo(style="background-image:url(/img/goods/gray.jpg)")
             .title 樸質灰
-            select.form-control
+            .price 100 元 / 雙
+            select.form-control(ng-model="info.cart.gray")
               each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-4
           .goods
             .photo(style="background-image:url(/img/goods/black.jpg)")
             .title 沉靜黑
-            select.form-control
+            .price 100 元 / 雙
+            select.form-control(ng-model="info.cart.black")
               each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-3
           .goods
             .photo(style="background-image:url(/img/goods/azure.jpg)")
             .title 純真藍
-            select.form-control
+            .price 100 元 / 雙
+            select.form-control(ng-model="info.cart.azure")
               each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-1
-
+      br
+      .text-center: small * 每筆訂單必須訂購三雙以上
       .sep.wide-gap
       .form
         .inner
+          .mask(ng-cloak,ng-show="info.done")
           h3 寄送資訊
           .tiny.grayed #[i.fa.fa-lock] 透用 SSL 安全連線並採貨到付款，保障您的消費安全
           .sep
           .row
             .col-sm-3
-              label 姓名
-              input.form-control(type="text",name="name",placeholder="例如: 王小明")
+              .form-group(ng-class="{'has-error':error.name,'has-feedback':error.name}")
+                label 姓名
+                input.form-control(type="text",name="name",
+                placeholder="例如: 王小明",ng-keyup="check()",ng-model="info.name")
+                .form-control-feedback(ng-show="error.name",ng-cloak) {{error.name}} #[i.fa.fa-close]
             .col-sm-3
-              label 電話
-              input.form-control(type="text",name="phone",placeholder="例如: 0910111111")
+              .form-group(ng-class="{'has-error':error.phone,'has-feedback':error.phone}")
+                label 電話
+                input.form-control(type="text",name="phone",
+                placeholder="例如: 0910111111",ng-keyup="check()",ng-model="info.phone")
+                .form-control-feedback(ng-show="error.phone",ng-cloak) {{error.phone}} #[i.fa.fa-close]
             .col-sm-6
-              label 寄送地址
-              input.form-control(type="text",name="name",placeholder="例如: 王小明")
+              .form-group(ng-class="{'has-error':error.addr,'has-feedback':error.addr}")
+                label 寄送地址
+                input.form-control(type="text",name="addr",
+                placeholder="例如: 台北市羅斯福路一段一號",ng-keyup="check()",ng-model="info.addr")
+                .form-control-feedback(ng-show="error.addr",ng-cloak) {{error.addr}} #[i.fa.fa-close]
+          .row
+            .col-sm-6
+              label 預期的送貨時段
+              .btn-group.btn-block
+                .btn.btn-default(ng-class="{'active':info.slot==0}",ng-click="info.slot=0") 皆可
+                .btn.btn-default(ng-class="{'active':info.slot==1}",ng-click="info.slot=1") 白天
+                .btn.btn-default(ng-class="{'active':info.slot==2}",ng-click="info.slot=2") 晚上
         .sep.gap
 
         label 購買明細
-        .item
-          .price 500
-          .name 樸質黑 x 5 
-        .item
-          .price 60
+        .item(ng-show="info.cart.gray>0",ng-cloak)
+          .price {{price.gray * info.cart.gray}}
+          .name 樸質灰 x {{info.cart.gray}}
+        .item(ng-show="info.cart.black>0",ng-cloak)
+          .price {{price.gray * info.cart.black}}
+          .name 沉靜黑 x {{info.cart.black}}
+        .item(ng-show="info.cart.azure>0",ng-cloak)
+          .price {{price.gray * info.cart.azure}}
+          .name 純真藍 x {{info.cart.azure}}
+        .item(ng-show="info.cart.azure + info.cart.black + info.cart.gray",ng-cloak)
+          .price {{info.shipfee}}
           .name 運費
+        .item(ng-show="!info.subtotal",ng-cloak)
+          small.name
+            span.grayed ( 尚未選取襪子 )
         .sep.gap
-        .item
-          .price 560 ( 元 )
-          .name 總計
+        .item(ng-cloak)
+          .price {{info.subtotal || 0}} ( 元 )
+          .name
+            span 總計
+            span(ng-show="info.count > 0") &nbsp;{{info.count}} 雙襪子
+            span.text-error(ng-show="error.count") &nbsp; * {{error.count}}
+
         br
-        .btn.btn-success.btn-lg.btn-block 購買
+        #a-reset.a-offset
+        .btn.btn-success.btn-lg.btn-block(ng-click="purchase()",ng-disabled="!error.clear",ng-hide="info.done")
+          span 購買
+          img.loader(src="img/loading.gif",ng-class="{'visible':info.loading}",ng-cloak)
+        .btn.btn-default.btn-lg.btn-block.disabled(ng-show="info.done",ng-cloak) 購買完成！#[i.fa.fa-check]
         .tiny.grayed.pull-right(style="margin-top: 5px") * 下單後隔日發貨，約 2 ~ 4 天送達，溫暖您的腳不需久候
+        div(ng-show="info.done",ng-cloak)
+          br
+          br
+          p.text-center 感謝您的訂購，我們將盡快為您處理訂單出貨。
+          .text-center: .btn.btn-default.btn-lg(ng-click="reset(true)") 再訂一次
       br
       hr
       br
     #a-about.a-offset
-    #about.section: .inner
+    #about.section: .inner(style="padding:0 20px")
       .spc
       br
-      h2 關於襪之心
-      div(style="margin:0 0 0 20px;font-weight:100")
+      h2(style="margin-left:0") 關於襪之心
+      div(style="font-weight:100")
         p 我們賣襪子，我們也只賣自己也愛穿的襪子。襪之心的襪子來自台灣，全程在地生產製造、經過嚴格品質把關，讓我們一起讓台灣被世界看見。
         br
         p 網路購物具七天鑑賞期 ( 貼身衣物需未經使用 )，瑕疵品則無條件退換貨，保障您的購物安心；若有商品相關或送貨、退貨問題，請來信至我們的客服信箱：#[a(href="mailto:contact@stockings.today") contact@stockings.today]
