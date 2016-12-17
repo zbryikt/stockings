@@ -191,17 +191,16 @@ h2 {
 #landing {
   width: 100%;
   height: 100%;
-  background: url("/img/sample/landing.jpg") center center;
-  background-size: cover;
+  background: url("/img/landing/compare.jpg") 50% 86% #fff no-repeat;
   position: relative;
 }
 #landing .title {
   position: absolute;
   width: 100%;
-  top: 44%;
+  top: 28%;
   left: 0;
   margin: -50px 0 0;
-  color: #fff;
+  color: #444;
   text-align: center;
   font-size: 3em;
 }
@@ -220,7 +219,7 @@ h2 {
   bottom: 20px;
   left: 50%;
   font-size: 64px;
-  color: #fff;
+  color: #444;
   margin: -32px 0 0 -32px;
   -ms-animation: blink 0.8s infinite linear;
   -moz-animation: blink 0.8s infinite linear;
@@ -268,6 +267,8 @@ h2 {
   }
 }
 #feature {
+  border-top: 12px solid #444;
+  border-bottom: 2px solid #ccc;
   width: 100%;
   min-height: 450px;
   background: #f5f5f5;
@@ -282,18 +283,22 @@ h2 {
   border-radius: 20px;
   margin: auto;
   box-shadow: 0 4px 0 0px #999;
+  background-size: cover;
+  background-position: 20% 50%;
 }
 #feature .features {
   font-size: 0.8em;
 }
 #feature .features .feature {
-  width: 120px;
-  height: 115px;
+  width: 100%;
+  height: 165px;
   background: #ddd;
   margin: auto;
   border-radius: 10px;
   margin-bottom: 10px;
   box-shadow: 0 4px 0 0px #999;
+  background-size: cover;
+  background-position: center center;
 }
 @media (max-width: 768px) {
   #feature .photo {
@@ -332,6 +337,9 @@ h2 {
 }
 #form .row {
   margin: 0;
+}
+#form .row .photo {
+  background-size: cover;
 }
 #form .form {
   margin: 10px;

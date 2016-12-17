@@ -45,9 +45,9 @@ html(lang="en")
             li: a(data-scroll,href="#a-about") 關於我們
     #landing
       .title
-        span 天冷了，保暖你的腳吧
+        span 天冷了，腳也冷
         .subtitle 何不來買雙氣墊保暖襪？
-        .desc 總整感鄉重古過會不足！等共已文行土整日廣務只投你思照；論說門嗎的深……來待成位教發一府定，有定手兩此南回展力高一水。花地內的是約；他社信有作般成服間意望教時月自收拉。
+        .desc 特殊紡織、雙層設計、彈性觸感、暖腳暖心 #[br]  — 你的足底值得最好的
       a.fa.fa-chevron-down(href="#a-feature",data-scroll)
     #a-feature.a-offset
     #feature.section: .inner
@@ -56,19 +56,19 @@ html(lang="en")
       br
       .row
         .col-sm-4
-          .photo
+          .photo(style="background-image:url(img/detail/brief-alt.jpg")
         .col-sm-8
-          p 綜合蔬菜盤，鼎王給我的第一印象是；｜碎碎念｜。可能為了方便和避免燒烤味吧；在台北有兩家分店，位於公益路上三角窗的店面；小心踩到地雷延期到現在，上面有簡易菜單，鍋底當然是點鴛鴦鍋；講八卦應該也可以很放心～；服務生將我們帶到2F座位區。把鹽舀取些許擺上碗中研磨成粉再倒入鹽碟中，鍋底為110元/人
+          p 加厚的襪底、略帶彈性的觸感、在寒冷的冬天將我們細膩的足底與冰冷的地板妥善的隔絕開來，特殊材料與織法除了在底部建構出保暖層、留住體溫，也在行走時也呵護著我們的雙腳，彷彿踩著綿花般輕巧的步伐，才知道 — 原來走路也能成為一種享受。
           .sep
           .row.features.text-center
             .col-xs-4
-              .feature
+              .feature(style="background-image:url(img/detail/warm.jpg)")
               .title 混織羊毛的#[b 暖和體感]
             .col-xs-4
-              .feature
+              .feature(style="background-image:url(img/detail/air-alt.jpg)")
               .title 保護腳踝的#[b 彈性氣墊]
             .col-xs-4
-              .feature
+              .feature(style="background-image:url(img/detail/texture-alt.jpg)")
               .title 精心挑選的#[b 舒適材質]
           br
 
@@ -82,22 +82,22 @@ html(lang="en")
         .col-sm-1
         .col-sm-3
           .goods
-            .photo
+            .photo(style="background-image:url(/img/goods/gray.jpg)")
             .title 樸質灰
             select.form-control
               each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-4
           .goods
-            .photo
+            .photo(style="background-image:url(/img/goods/black.jpg)")
             .title 沉靜黑
             select.form-control
               each i in [0,1,2,3,4,5,6]
                 option= i
         .col-sm-3
           .goods
-            .photo
-            .title 純真白
+            .photo(style="background-image:url(/img/goods/azure.jpg)")
+            .title 純真藍
             select.form-control
               each i in [0,1,2,3,4,5,6]
                 option= i
@@ -143,11 +143,10 @@ html(lang="en")
       .spc
       br
       h2 關於襪之心
-      .sep.gap
-      blockquote
-        p 杏鮑鮑一來就被服務員丟下鍋ˊˇˋ；次總是會有人不能吃辣。再引進甘甜的山泉水過濾淨化，至於小菜，吃起來比較油口；除非煮了很久很久吧，在強烈的黃光照射下這張拍得沒有很漂亮。我還沒把裙子拿去洗，因為那醬汁太好吃了，之後我都會跟進，所以訂了這家好像也美賣的搖滾熱炒；經一段時間滾煮，整個超讚的。配點薑絲吃更能提升香味，麻辣的味道會比較適合，吃起來QQ嫩嫩有彈性，其..
+      div(style="margin:0 0 0 20px;font-weight:100")
+        p 我們賣襪子，我們也只賣自己也愛穿的襪子。襪之心的襪子來自台灣，全程在地生產製造、經過嚴格品質把關，讓我們一起讓台灣被世界看見。
         br
-        p 若有商品相關或送貨、退貨問題，請來信至我們的客服信箱：#[a(href="mailto:contact@stockings.today") contact@stockings.today]
+        p 網路購物具七天鑑賞期 ( 貼身衣物需未經使用 )，瑕疵品則無條件退換貨，保障您的購物安心；若有商品相關或送貨、退貨問題，請來信至我們的客服信箱：#[a(href="mailto:contact@stockings.today") contact@stockings.today]
         br
       .spc
     #footer.section: .inner
@@ -157,5 +156,4 @@ html(lang="en")
         a(href="mailto:contact@stockings.today") 客服信箱
       div: b 襪之心
       div stockings.today &copy; 2016 
-      .font(style="opacity:0.1") 完
   script(type="text/javascript",src="index.js")
