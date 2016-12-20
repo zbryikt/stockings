@@ -79,7 +79,7 @@ h2 {
 .section {
   margin: auto;
 }
-.inner {
+.section .inner {
   max-width: 960px;
   margin: auto;
 }
@@ -138,6 +138,9 @@ h2 {
 }
 .item .price {
   float: right;
+}
+#navbar {
+  z-index: 6;
 }
 .navbar-brand img {
   vertical-align: bottom;
@@ -370,6 +373,9 @@ h2 {
     display: block;
   }
 }
+.price.out {
+  color: #d42;
+}
 #form .row {
   margin: 0;
 }
@@ -400,7 +406,7 @@ h2 {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.3);
-  z-index: 9;
+  z-index: 5;
   border-radius: 3px;
 }
 #form .form label {
@@ -424,6 +430,33 @@ h2 {
   #form .sep.wide-gap {
     display: none;
   }
+}
+#thanks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  opacity: 0;
+  z-index: -1;
+}
+#thanks .inner {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  left: 0;
+  margin-top: -50px;
+}
+#thanks.active {
+  -ms-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  opacity: 1;
+  z-index: 7;
 }
 #footer .inner {
   padding: 10px;

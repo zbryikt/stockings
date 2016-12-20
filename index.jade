@@ -31,7 +31,10 @@ html(lang="en")
     script(src="//cdn.firebase.com/js/client/2.4.2/firebase.js")
     script(type="text/javascript",src="//cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.2.0/js/smooth-scroll.js")
     include fb-pixel.html
-  body(ng-app="stockings")
+  body(ng-app="stockings",ng-controller="form")
+    #thanks(ng-class="{'active':ctrl.done}",ng-cloak): .inner
+      p.text-center 感謝您的訂購，我們將盡快為您處理訂單出貨。
+      .text-center: .btn.btn-default.btn-lg(ng-click="form.reset()") 再訂一次
     #navbar.navbar.navbar-default.navbar-fixed-top.navbar-inverse
       .container-fluid
         .navbar-header
@@ -73,7 +76,7 @@ html(lang="en")
           br
 
     #a-form.a-offset
-    #form.section(ng-controller="form"): .inner
+    #form.section: .inner
       .text-center
         h2 現在就下訂吧！
         .tiny.grayed 灰、黑、藍，三種款式供您挑選...
@@ -84,103 +87,98 @@ html(lang="en")
           .goods
             .photo(style="background-image:url(/img/goods/gray.jpg)")
             .title 樸質灰
-            .price 100 元 / 雙
-            select.form-control(ng-model="info.cart.gray")
-              each i in [0,1,2,3,4,5,6]
-                option= i
+            .price.out(ng-show="stocks.options[1].gray.length==1",ng-cloak) 已售完
+            .price(ng-show="stocks.options[1].gray.length>1",ng-cloak) {{stocks.stocks[1].price.gray}} 元 / 雙
+            select.form-control(ng-model="stocks.choices[1].gray",ng-disabled="stocks.options[1].gray.length==1",
+            ng-options="item as item.count for item in stocks.options[1].gray track by item.count")
         .col-sm-4
           .goods
             .photo(style="background-image:url(/img/goods/black.jpg)")
             .title 沉靜黑
-            .price 100 元 / 雙
-            select.form-control(ng-model="info.cart.black")
-              each i in [0,1,2,3,4,5,6]
-                option= i
+            .price.out(ng-show="stocks.options[1].black.length==1",ng-cloak) 已售完
+            .price(ng-show="stocks.options[1].black.length>1",ng-cloak) {{stocks.stocks[1].price.black}} 元 / 雙
+            select.form-control(ng-model="stocks.choices[1].black",ng-disabled="stocks.options[1].black.length==1",
+            ng-options="item as item.count for item in stocks.options[1].black track by item.count")
         .col-sm-3
           .goods
             .photo(style="background-image:url(/img/goods/azure.jpg)")
             .title 純真藍
-            .price 100 元 / 雙
-            select.form-control(ng-model="info.cart.azure")
-              each i in [0,1,2,3,4,5,6]
-                option= i
+            .price.out(ng-show="stocks.options[1].azure.length==1",ng-cloak) 已售完
+            .price(ng-show="stocks.options[1].azure.length>1",ng-cloak) {{stocks.stocks[1].price.azure}} 元 / 雙
+            select.form-control(ng-model="stocks.choices[1].azure",ng-disabled="stocks.options[1].azure.length==1",
+            ng-options="item as item.count for item in stocks.options[1].azure track by item.count")
         .col-sm-1
       br
       .text-center: small * 每筆訂單必須訂購三雙以上
       .sep.wide-gap
       .form
         .inner
-          .mask(ng-cloak,ng-show="info.done")
           h3 寄送資訊
           .tiny.grayed #[i.fa.fa-lock] 透用 SSL 安全連線並採貨到付款，保障您的消費安全
           .sep
           .row
             .col-sm-3
-              .form-group(ng-class="{'has-error':error.name,'has-feedback':error.name}")
+              .form-group(ng-class="{'has-error':form.error.name,'has-feedback':form.error.name}")
                 label 姓名
                 input.form-control(type="text",name="name",
-                placeholder="例如: 王小明",ng-keyup="check()",ng-model="info.name")
-                .form-control-feedback(ng-show="error.name",ng-cloak) {{error.name}} #[i.fa.fa-close]
+                placeholder="例如: 王小明",ng-keyup="form.check('name')",ng-model="form.name")
+                .form-control-feedback(ng-show="form.error.name",ng-cloak) {{form.error.name}} #[i.fa.fa-close]
             .col-sm-3
-              .form-group(ng-class="{'has-error':error.phone,'has-feedback':error.phone}")
+              .form-group(ng-class="{'has-error':form.error.phone,'has-feedback':form.error.phone}")
                 label 電話
                 input.form-control(type="text",name="phone",
-                placeholder="例如: 0910111111",ng-keyup="check()",ng-model="info.phone")
-                .form-control-feedback(ng-show="error.phone",ng-cloak) {{error.phone}} #[i.fa.fa-close]
+                placeholder="例如: 0910111111",ng-keyup="form.check('phone')",ng-model="form.phone")
+                .form-control-feedback(ng-show="form.error.phone",ng-cloak) {{form.error.phone}} #[i.fa.fa-close]
             .col-sm-6
-              .form-group(ng-class="{'has-error':error.addr,'has-feedback':error.addr}")
+              .form-group(ng-class="{'has-error':form.error.addr,'has-feedback':form.error.addr}")
                 label 寄送地址
                 input.form-control(type="text",name="addr",
-                placeholder="例如: 台北市羅斯福路一段一號",ng-keyup="check()",ng-model="info.addr")
-                .form-control-feedback(ng-show="error.addr",ng-cloak) {{error.addr}} #[i.fa.fa-close]
+                placeholder="例如: 台北市羅斯福路一段一號",ng-keyup="form.check('addr')",ng-model="form.addr")
+                .form-control-feedback(ng-show="form.error.addr",ng-cloak) {{form.error.addr}} #[i.fa.fa-close]
           .row
             .col-sm-6
               label 預期的送貨時段
               .btn-group.btn-block
-                .btn.btn-default(ng-class="{'active':info.slot==0}",ng-click="info.slot=0") 皆可
-                .btn.btn-default(ng-class="{'active':info.slot==1}",ng-click="info.slot=1") 白天
-                .btn.btn-default(ng-class="{'active':info.slot==2}",ng-click="info.slot=2") 晚上
+                .btn.btn-default(ng-class="{'active':form.slot==0}",ng-click="form.slot=0") 皆可
+                .btn.btn-default(ng-class="{'active':form.slot==1}",ng-click="form.slot=1") 白天
+                .btn.btn-default(ng-class="{'active':form.slot==2}",ng-click="form.slot=2") 晚上
         .sep.gap
 
         label 購買明細
-        .item(ng-show="info.cart.gray>0",ng-cloak)
-          .price {{price.gray * info.cart.gray}}
-          .name 樸質灰 x {{info.cart.gray}}
-        .item(ng-show="info.cart.black>0",ng-cloak)
-          .price {{price.gray * info.cart.black}}
-          .name 沉靜黑 x {{info.cart.black}}
-        .item(ng-show="info.cart.azure>0",ng-cloak)
-          .price {{price.gray * info.cart.azure}}
-          .name 純真藍 x {{info.cart.azure}}
-        .item(ng-show="info.cart.azure + info.cart.black + info.cart.gray",ng-cloak)
-          .price {{info.shipfee}}
+        .item(ng-repeat="item in form.order",ng-cloak)
+          .price {{stocks.stocks[item.stockid].price[item.variant] * item.quantity}}
+          .name {{stocks.stocks[item.stockid].name[item.variant]}} x {{item.quantity}}
+        .item(ng-show="form.amount",ng-cloak)
+          .price 60
           .name 運費
-        .item(ng-show="!info.subtotal",ng-cloak)
+        .item(ng-show="!form.subtotal",ng-cloak)
           small.name
             span.grayed ( 尚未選取襪子 )
         .sep.gap
         .item(ng-cloak)
-          .price {{info.subtotal || 0}} ( 元 )
+          .price {{form.subtotal || 0}} ( 元 )
           .name
             span 總計
-            span(ng-show="info.count > 0") &nbsp;{{info.count}} 雙襪子
-            span.text-error(ng-show="error.count") &nbsp; * {{error.count}}
-
+            span(ng-show="form.amount > 0") &nbsp;{{form.amount}} 雙襪子
+            span.text-error(ng-show="form.error.count") &nbsp; * {{form.error.count}}
+        div(style="color:#920;margin-top:10px;border-top:1px dashed #ccc;padding-top:10px",
+        ng-show="form.error",ng-cloak)
+          i.fa.fa-warning
+          span &nbsp;
+          span(ng-show="form.error.subtotal") 您尚未選擇襪子數量，請先選定想買的襪子款式與數量喔！
+          span(ng-show="!form.error.subtotal && form.error") 您的訂購資訊有誤，請修正後再次下單～
         br
         #a-reset.a-offset
-        .btn.btn-success.btn-lg.btn-block(ng-click="purchase()",ng-disabled="!error.clear",ng-hide="info.done")
+        .btn.btn-success.btn-lg.btn-block(ng-click="form.submit()",
+        ng-disabled="form.error",ng-hide="ctrl.done")
           span 購買
-          img.loader(src="img/loading.gif",ng-class="{'visible':info.loading}",ng-cloak)
-        .btn.btn-default.btn-lg.btn-block.disabled(ng-show="info.done",ng-cloak) 購買完成！#[i.fa.fa-check]
+          img.loader(src="img/loading.gif",ng-class="{'visible':form.state=='submit'}",ng-cloak)
+        .btn.btn-default.btn-lg.btn-block.disabled(ng-show="form.state=='done'",ng-cloak) 購買完成！#[i.fa.fa-check]
         .tiny.grayed.pull-right(style="margin-top: 5px") * 下單後隔日發貨，約 2 ~ 4 天送達，溫暖您的腳不需久候
-        div(ng-show="info.done",ng-cloak)
-          br
-          br
-          p.text-center 感謝您的訂購，我們將盡快為您處理訂單出貨。
-          .text-center: .btn.btn-default.btn-lg(ng-click="reset(true)") 再訂一次
       br
       hr
       br
+
     #a-about.a-offset
     #about.section: .inner(style="padding:0 20px")
       .spc
